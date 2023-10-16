@@ -7,6 +7,8 @@ async (_, thunkAPI) => {
 const { rejectWithValue } = thunkAPI;
 try {
 const res = await fetchArticles();
+
+
 return res.data;
 }
 catch (error) {
@@ -51,6 +53,8 @@ catch (error) {
 return rejectWithValue(error.message);
 }
 }
+
+
 );
 export const findArticleByID = createAsyncThunk(
 "article/findArticleByID",
@@ -96,6 +100,7 @@ console.log("impossible de se connecter au serveur")
 state.isLoading=true;
 state.error=null;
 state.success=null;
+
 })
 .addCase(createArticle.fulfilled, (state, action) => {
 state.articles.push(action.payload);
@@ -141,12 +146,13 @@ state.error=action.payload;
 state.isLoading = true
 state.error=null;
 })
-.addCase(findArticleByID.fulfilled,(state, action) => {
-    state.isLoading = false
-    state.error = null
-    state.article=action.payload;
-    })
-    }
-    }
-    )
-    export default articleSlice.reducer;
+.addCase(
+findArticleByID.fulfilled,(state, action) => {
+state.isLoading = false
+state.error = null
+state.article=action.payload;
+})
+}
+}
+)
+export default articleSlice.reducer;

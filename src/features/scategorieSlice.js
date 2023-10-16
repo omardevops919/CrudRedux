@@ -72,9 +72,6 @@ export const scategorieSlice = createSlice({
 name: 'scategorie',
 initialState:{
 scategories:[],
-
-
-
 scategorie:{},
 isLoading: false,
 success:null,
